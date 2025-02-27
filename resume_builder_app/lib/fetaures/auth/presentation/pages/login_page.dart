@@ -31,6 +31,12 @@ class LoginPage extends StatelessWidget {
                 },
                 child: state is AuthLoading ? CircularProgressIndicator() : Text('Login'),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/signup');
+                },
+                child: state is AuthLoading ? CircularProgressIndicator() : Text('Sign Up'),
+              ),
             ],
           );
         },
