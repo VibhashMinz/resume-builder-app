@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resume_builder_app/core/usecase/login_usecase.dart';
@@ -10,7 +11,9 @@ import 'core/theme/theme.dart';
 import 'core/network/api_client.dart';
 import 'package:dio/dio.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   final apiClient = ApiClient(dio: Dio());
   final remoteDataSource = AuthRemoteDataSource(apiClient);
   final authRepository = AuthRepositoryImpl(remoteDataSource);

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "425611782089",
+    "project_id": "resume-builder-app-fc6de",
+    "storage_bucket": "resume-builder-app-fc6de.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425611782089:android:39253e4fba6beb546e6a18",
+        "android_client_info": {
+          "package_name": "com.vgm.resumeBuilderApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425611782089-7m8u26aa87gfnmon14pn0nf28soqglof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKLm1m667_eZkylnExBGU5sgKHEslxIS8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425611782089-7m8u26aa87gfnmon14pn0nf28soqglof.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
