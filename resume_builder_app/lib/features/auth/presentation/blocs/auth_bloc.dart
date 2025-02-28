@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:resume_builder_app/core/usecase/login_usecase.dart';
-import 'package:resume_builder_app/core/usecase/signup_usecase.dart';
+import 'package:resume_builder_app/features/auth/domain/usecases/login_usecase.dart';
+import 'package:resume_builder_app/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:resume_builder_app/features/auth/presentation/blocs/auth_event.dart';
 import 'package:resume_builder_app/features/auth/presentation/blocs/auth_state.dart';
 

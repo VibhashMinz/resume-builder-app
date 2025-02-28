@@ -1,12 +1,10 @@
-import 'package:resume_builder_app/core/usecase/usecase.dart';
 import 'package:resume_builder_app/features/auth/domain/entities/user.dart';
 import 'package:resume_builder_app/features/auth/domain/repositories/auth_repository.dart';
 
-class Login extends UseCase<User, LoginParams> {
+class Login {
   final AuthRepository repository;
   Login(this.repository);
 
-  @override
   Future<User> call(LoginParams params) {
     return repository.login(params.email, params.password);
   }

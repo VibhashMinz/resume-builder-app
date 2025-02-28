@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:resume_builder_app/core/usecase/login_usecase.dart';
-import 'package:resume_builder_app/core/usecase/signup_usecase.dart';
+import 'package:resume_builder_app/core/theme/bloc/theme_bloc.dart';
 import 'package:resume_builder_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:resume_builder_app/features/auth/data/sources/auth_remote_data_source.dart';
 import 'package:resume_builder_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:resume_builder_app/features/auth/domain/usecases/login_usecase.dart';
+import 'package:resume_builder_app/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:resume_builder_app/features/auth/presentation/blocs/auth_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../network/api_client.dart';
 
@@ -16,6 +18,10 @@ final sl = GetIt.instance;
 Future<void> setupLocator() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  // Register SharedPreferences
+  final sharedPreferences = await SharedPreferences.getInstance();
+  sl.registerLazySingleton(() => sharedPreferences);
 
   // Register Dio
   sl.registerLazySingleton<Dio>(() => Dio());
@@ -33,9 +39,10 @@ Future<void> setupLocator() async {
   sl.registerLazySingleton(() => Login(sl<AuthRepository>()));
   sl.registerLazySingleton(() => Signup(sl<AuthRepository>()));
 
-  // Register Bloc
+  // Register Blocs
   sl.registerFactory(() => AuthBloc(
         loginUseCase: sl<Login>(),
         signupUseCase: sl<Signup>(),
       ));
+  sl.registerFactory(() => ThemeBloc(preferences: sl<SharedPreferences>()));
 }
