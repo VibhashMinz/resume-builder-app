@@ -1,6 +1,6 @@
 import 'package:resume_builder_app/core/usecase/usecase.dart';
-import 'package:resume_builder_app/fetaures/auth/domain/entities/user.dart';
-import 'package:resume_builder_app/fetaures/auth/domain/repositories/auth_repository.dart';
+import 'package:resume_builder_app/features/auth/domain/entities/user.dart';
+import 'package:resume_builder_app/features/auth/domain/repositories/auth_repository.dart';
 
 class Signup extends UseCase<User, SignupParams> {
   final AuthRepository repository;

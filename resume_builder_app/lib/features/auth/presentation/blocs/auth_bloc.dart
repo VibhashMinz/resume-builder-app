@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resume_builder_app/core/usecase/login_usecase.dart';
 import 'package:resume_builder_app/core/usecase/signup_usecase.dart';
-import 'package:resume_builder_app/fetaures/auth/presentation/blocs/auth_event.dart';
-import 'package:resume_builder_app/fetaures/auth/presentation/blocs/auth_state.dart';
+import 'package:resume_builder_app/features/auth/presentation/blocs/auth_event.dart';
+import 'package:resume_builder_app/features/auth/presentation/blocs/auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final Login loginUseCase;

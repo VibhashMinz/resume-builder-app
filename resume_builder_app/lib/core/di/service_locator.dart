@@ -4,10 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:resume_builder_app/core/usecase/login_usecase.dart';
 import 'package:resume_builder_app/core/usecase/signup_usecase.dart';
-import 'package:resume_builder_app/fetaures/auth/data/repositories/auth_repository_impl.dart';
-import 'package:resume_builder_app/fetaures/auth/data/sources/auth_remote_data_source.dart';
-import 'package:resume_builder_app/fetaures/auth/domain/repositories/auth_repository.dart';
-import 'package:resume_builder_app/fetaures/auth/presentation/blocs/auth_bloc.dart';
+import 'package:resume_builder_app/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:resume_builder_app/features/auth/data/sources/auth_remote_data_source.dart';
+import 'package:resume_builder_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:resume_builder_app/features/auth/presentation/blocs/auth_bloc.dart';
 
 import '../network/api_client.dart';
 

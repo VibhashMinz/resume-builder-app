@@ -1,6 +1,6 @@
 import 'package:resume_builder_app/core/network/api_client.dart';
 import 'package:resume_builder_app/core/utils/constants.dart';
-import 'package:resume_builder_app/fetaures/auth/data/models/user_model.dart';
+import 'package:resume_builder_app/features/auth/data/models/user_model.dart';
 
 class AuthRemoteDataSource {
   final ApiClient apiClient;

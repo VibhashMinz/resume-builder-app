@@ -1,4 +1,4 @@
-import 'package:resume_builder_app/fetaures/auth/domain/entities/user.dart';
+import 'package:resume_builder_app/features/auth/domain/entities/user.dart';
 
 abstract class AuthState {}
 

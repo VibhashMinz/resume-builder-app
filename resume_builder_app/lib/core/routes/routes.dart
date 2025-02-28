@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:resume_builder_app/fetaures/auth/presentation/pages/login_page.dart';
-import 'package:resume_builder_app/fetaures/auth/presentation/pages/signup_page.dart';
-import 'package:resume_builder_app/fetaures/auth/presentation/pages/splash_screen.dart';
+import 'package:resume_builder_app/features/auth/presentation/pages/login_page.dart';
+import 'package:resume_builder_app/features/auth/presentation/pages/signup_page.dart';
+import 'package:resume_builder_app/features/auth/presentation/pages/splash_screen.dart';
 
 class AppRoutes {
   static const String splash = '/';
