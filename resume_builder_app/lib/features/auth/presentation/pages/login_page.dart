@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resume_builder_app/core/theme/widgets/theme_toggle_button.dart';
 import 'package:resume_builder_app/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:resume_builder_app/features/auth/presentation/blocs/auth_bloc.dart';
 import 'package:resume_builder_app/features/auth/presentation/blocs/auth_event.dart';
@@ -25,12 +26,15 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
         elevation: 0,
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.black87,
+        actions: const [
+          ThemeToggleButton(),
+        ],
       ),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
@@ -47,12 +51,10 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Text(
+                Text(
                   'Welcome Back!',
-                  style: TextStyle(
-                    fontSize: 28,
+                  style: textTheme.displayMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black87,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -77,12 +79,12 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: state is AuthLoading
                       ? null
                       : () {
-                          BlocProvider.of<AuthBloc>(context).add(
-                            LoginEvent(
-                              _emailController.text,
-                              _passwordController.text,
-                            ),
-                          );
+                          context.read<AuthBloc>().add(
+                                LoginEvent(
+                                  _emailController.text,
+                                  _passwordController.text,
+                                ),
+                              );
                         },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
