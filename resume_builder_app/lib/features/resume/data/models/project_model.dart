@@ -1,58 +1,82 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:resume_builder_app/features/resume/domain/entities/project.dart';
 
-class ProjectModel extends Project {
+class ProjectModel {
+  final String name;
+  final String description;
+  final List<String> technologies;
+  final String? link;
+  final DateTime? startDate;
+  final DateTime? endDate;
+
   const ProjectModel({
-    required super.title,
-    required super.description,
-    required super.startDate,
-    super.endDate,
-    required super.technologies,
-    super.url,
-    required super.achievements,
+    required this.name,
+    required this.description,
+    required this.technologies,
+    this.link,
+    this.startDate,
+    this.endDate,
   });
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) {
     return ProjectModel(
-      title: json['title'] as String,
+      name: json['name'] as String,
       description: json['description'] as String,
-      startDate: (json['startDate'] as Timestamp).toDate(),
-      endDate: json['endDate'] != null ? (json['endDate'] as Timestamp).toDate() : null,
       technologies: List<String>.from(json['technologies'] as List),
-      url: json['url'] as String?,
-      achievements: List<String>.from(json['achievements'] as List),
+      link: json['link'] as String?,
+      startDate: json['startDate'] != null ? (json['startDate'] as Timestamp).toDate() : null,
+      endDate: json['endDate'] != null ? (json['endDate'] as Timestamp).toDate() : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'title': title,
+      'name': name,
       'description': description,
-      'startDate': Timestamp.fromDate(startDate),
-      'endDate': endDate != null ? Timestamp.fromDate(endDate!) : null,
       'technologies': technologies,
-      'url': url,
-      'achievements': achievements,
+      'link': link,
+      'startDate': startDate != null ? Timestamp.fromDate(startDate!) : null,
+      'endDate': endDate != null ? Timestamp.fromDate(endDate!) : null,
     };
   }
 
+  factory ProjectModel.fromEntity(Project entity) {
+    return ProjectModel(
+      name: entity.name,
+      description: entity.description,
+      technologies: entity.technologies,
+      link: entity.link,
+      startDate: entity.startDate,
+      endDate: entity.endDate,
+    );
+  }
+
+  Project toEntity() {
+    return Project(
+      name: name,
+      description: description,
+      technologies: technologies,
+      link: link,
+      startDate: startDate,
+      endDate: endDate,
+    );
+  }
+
   ProjectModel copyWith({
-    String? title,
+    String? name,
     String? description,
+    List<String>? technologies,
+    String? link,
     DateTime? startDate,
     DateTime? endDate,
-    List<String>? technologies,
-    String? url,
-    List<String>? achievements,
   }) {
     return ProjectModel(
-      title: title ?? this.title,
+      name: name ?? this.name,
       description: description ?? this.description,
+      technologies: technologies ?? this.technologies,
+      link: link ?? this.link,
       startDate: startDate ?? this.startDate,
       endDate: endDate ?? this.endDate,
-      technologies: technologies ?? this.technologies,
-      url: url ?? this.url,
-      achievements: achievements ?? this.achievements,
     );
   }
 }

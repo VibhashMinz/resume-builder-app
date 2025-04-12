@@ -1,22 +1,27 @@
 import 'package:resume_builder_app/features/resume/domain/entities/skill.dart';
 
-class SkillModel extends Skill {
+class SkillModel {
+  final String name;
+  final SkillLevel level;
+  final String category;
+  final List<String>? endorsements;
+
   const SkillModel({
-    required super.name,
-    required super.level,
-    required super.category,
-    super.endorsements,
+    required this.name,
+    required this.level,
+    required this.category,
+    this.endorsements,
   });
 
   factory SkillModel.fromJson(Map<String, dynamic> json) {
     return SkillModel(
       name: json['name'] as String,
       level: SkillLevel.values.firstWhere(
-        (e) => e.toString() == 'SkillLevel.${json['level']}',
+        (e) => e.toString().split('.').last == json['level'] as String,
         orElse: () => SkillLevel.beginner,
       ),
       category: json['category'] as String,
-      endorsements: json['endorsements'] != null ? List<String>.from(json['endorsements'] as List) : null,
+      endorsements: List<String>.from(json['endorsements'] as List? ?? []),
     );
   }
 
@@ -27,6 +32,24 @@ class SkillModel extends Skill {
       'category': category,
       'endorsements': endorsements,
     };
+  }
+
+  factory SkillModel.fromEntity(Skill entity) {
+    return SkillModel(
+      name: entity.name,
+      level: entity.level,
+      category: entity.category,
+      endorsements: entity.endorsements,
+    );
+  }
+
+  Skill toEntity() {
+    return Skill(
+      name: name,
+      level: level,
+      category: category,
+      endorsements: endorsements,
+    );
   }
 
   SkillModel copyWith({

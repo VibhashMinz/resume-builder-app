@@ -1,22 +1,29 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:resume_builder_app/features/resume/domain/entities/certificate.dart';
 
-class CertificateModel extends Certificate {
+class CertificateModel {
+  final String name;
+  final String issuer;
+  final DateTime issueDate;
+  final DateTime? expiryDate;
+  final String? credentialId;
+  final String? url;
+
   const CertificateModel({
-    required super.name,
-    required super.issuer,
-    required super.issueDate,
-    super.expiryDate,
-    super.credentialId,
-    super.url,
+    required this.name,
+    required this.issuer,
+    required this.issueDate,
+    this.expiryDate,
+    this.credentialId,
+    this.url,
   });
 
   factory CertificateModel.fromJson(Map<String, dynamic> json) {
     return CertificateModel(
       name: json['name'] as String,
       issuer: json['issuer'] as String,
-      issueDate: (json['issueDate'] as Timestamp).toDate(),
-      expiryDate: json['expiryDate'] != null ? (json['expiryDate'] as Timestamp).toDate() : null,
+      issueDate: DateTime.parse(json['issueDate'] as String),
+      expiryDate: json['expiryDate'] != null ? DateTime.parse(json['expiryDate'] as String) : null,
       credentialId: json['credentialId'] as String?,
       url: json['url'] as String?,
     );
@@ -26,11 +33,33 @@ class CertificateModel extends Certificate {
     return {
       'name': name,
       'issuer': issuer,
-      'issueDate': Timestamp.fromDate(issueDate),
-      'expiryDate': expiryDate != null ? Timestamp.fromDate(expiryDate!) : null,
+      'issueDate': issueDate.toIso8601String(),
+      'expiryDate': expiryDate?.toIso8601String(),
       'credentialId': credentialId,
       'url': url,
     };
+  }
+
+  factory CertificateModel.fromEntity(Certificate entity) {
+    return CertificateModel(
+      name: entity.name,
+      issuer: entity.issuer,
+      issueDate: entity.issueDate,
+      expiryDate: entity.expiryDate,
+      credentialId: entity.credentialId,
+      url: entity.url,
+    );
+  }
+
+  Certificate toEntity() {
+    return Certificate(
+      name: name,
+      issuer: issuer,
+      issueDate: issueDate,
+      expiryDate: expiryDate,
+      credentialId: credentialId,
+      url: url,
+    );
   }
 
   CertificateModel copyWith({
