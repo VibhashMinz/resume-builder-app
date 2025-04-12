@@ -21,6 +21,19 @@ class Education extends Equatable {
     required this.location,
   });
 
+  Map<String, dynamic> toJson() {
+    return {
+      'institution': institution,
+      'degree': degree,
+      'field': field,
+      'startDate': startDate.toIso8601String(),
+      'endDate': endDate?.toIso8601String(),
+      'gpa': gpa,
+      'achievements': achievements,
+      'location': location,
+    };
+  }
+
   @override
   List<Object?> get props => [
         institution,

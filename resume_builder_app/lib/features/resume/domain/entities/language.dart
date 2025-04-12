@@ -13,6 +13,14 @@ class Language extends Equatable {
     this.certification,
   });
 
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'level': level.toString().split('.').last,
+      'certification': certification,
+    };
+  }
+
   @override
   List<Object?> get props => [
         name,

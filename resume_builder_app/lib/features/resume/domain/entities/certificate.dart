@@ -17,6 +17,17 @@ class Certificate extends Equatable {
     this.url,
   });
 
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'issuer': issuer,
+      'issueDate': issueDate.toIso8601String(),
+      'expiryDate': expiryDate?.toIso8601String(),
+      'credentialId': credentialId,
+      'url': url,
+    };
+  }
+
   @override
   List<Object?> get props => [
         name,

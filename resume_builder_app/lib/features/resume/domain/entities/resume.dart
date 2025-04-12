@@ -6,11 +6,13 @@ import 'package:resume_builder_app/features/resume/domain/entities/project.dart'
 import 'package:resume_builder_app/features/resume/domain/entities/skill.dart';
 import 'package:resume_builder_app/features/resume/domain/entities/language.dart';
 import 'package:resume_builder_app/features/resume/domain/entities/certificate.dart';
+import 'package:resume_builder_app/features/resume/domain/entities/resume_template.dart';
 
 class Resume<P extends PersonalInfo, E extends Education, W extends WorkExperience, PR extends Project, S extends Skill, L extends Language, C extends Certificate> extends Equatable {
   final String id;
   final String userId;
   final String title;
+  final ResumeTemplate template;
   final P personalInfo;
   final List<E> education;
   final List<W> workExperience;
@@ -27,6 +29,7 @@ class Resume<P extends PersonalInfo, E extends Education, W extends WorkExperien
     required this.id,
     required this.userId,
     required this.title,
+    required this.template,
     required this.personalInfo,
     required this.education,
     required this.workExperience,
@@ -45,6 +48,7 @@ class Resume<P extends PersonalInfo, E extends Education, W extends WorkExperien
         id,
         userId,
         title,
+        template,
         personalInfo,
         education,
         workExperience,
@@ -57,6 +61,40 @@ class Resume<P extends PersonalInfo, E extends Education, W extends WorkExperien
         createdAt,
         updatedAt,
       ];
-}
 
-enum ResumeTemplate { modern, classic, professional, creative, minimal, elegant }
+  Resume<P, E, W, PR, S, L, C> copyWith({
+    String? id,
+    String? userId,
+    String? title,
+    ResumeTemplate? template,
+    P? personalInfo,
+    List<E>? education,
+    List<W>? workExperience,
+    List<PR>? projects,
+    List<S>? skills,
+    List<L>? languages,
+    List<C>? certificates,
+    String? summary,
+    bool? isPublic,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) {
+    return Resume<P, E, W, PR, S, L, C>(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      title: title ?? this.title,
+      template: template ?? this.template,
+      personalInfo: personalInfo ?? this.personalInfo,
+      education: education ?? this.education,
+      workExperience: workExperience ?? this.workExperience,
+      projects: projects ?? this.projects,
+      skills: skills ?? this.skills,
+      languages: languages ?? this.languages,
+      certificates: certificates ?? this.certificates,
+      summary: summary ?? this.summary,
+      isPublic: isPublic ?? this.isPublic,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
+}

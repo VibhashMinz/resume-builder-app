@@ -15,6 +15,14 @@ class Skill extends Equatable {
     this.endorsements,
   });
 
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'level': level,
+      'category': category,
+    };
+  }
+
   @override
   List<Object?> get props => [
         name,

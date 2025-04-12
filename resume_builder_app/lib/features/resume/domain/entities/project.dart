@@ -1,32 +1,40 @@
 import 'package:equatable/equatable.dart';
 
 class Project extends Equatable {
-  final String title;
+  final String name;
   final String description;
-  final DateTime startDate;
-  final DateTime? endDate;
   final List<String> technologies;
-  final String? url;
-  final List<String> achievements;
+  final String? link;
+  final DateTime? startDate;
+  final DateTime? endDate;
 
   const Project({
-    required this.title,
+    required this.name,
     required this.description,
-    required this.startDate,
-    this.endDate,
     required this.technologies,
-    this.url,
-    required this.achievements,
+    this.link,
+    this.startDate,
+    this.endDate,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'description': description,
+      'technologies': technologies,
+      'link': link,
+      'startDate': startDate?.toIso8601String(),
+      'endDate': endDate?.toIso8601String(),
+    };
+  }
 
   @override
   List<Object?> get props => [
-        title,
+        name,
         description,
+        technologies,
+        link,
         startDate,
         endDate,
-        technologies,
-        url,
-        achievements,
       ];
 }
