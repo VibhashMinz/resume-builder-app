@@ -24,6 +24,19 @@ class AppTheme {
       // background: _backgroundLight,
       error: _errorColor,
     ),
+    iconTheme: const IconThemeData(
+      color: _primaryLight,
+      size: 24,
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: _textDark,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    ),
     scaffoldBackgroundColor: _backgroundLight,
     appBarTheme: const AppBarTheme(
       backgroundColor: _primaryLight,
@@ -85,6 +98,19 @@ class AppTheme {
       surface: _surfaceDark,
       //   background: _backgroundDark,
       error: _errorColor,
+    ),
+    iconTheme: const IconThemeData(
+      color: _primaryDark,
+      size: 24,
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: _primaryDark,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
     ),
     scaffoldBackgroundColor: _backgroundDark,
     appBarTheme: const AppBarTheme(

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:resume_builder_app/features/resume/domain/entities/certificate.dart';
 
 class CertificateModel {
+  final String id;
   final String name;
   final String issuer;
   final DateTime issueDate;
@@ -10,6 +11,7 @@ class CertificateModel {
   final String? url;
 
   const CertificateModel({
+    required this.id,
     required this.name,
     required this.issuer,
     required this.issueDate,
@@ -20,6 +22,7 @@ class CertificateModel {
 
   factory CertificateModel.fromJson(Map<String, dynamic> json) {
     return CertificateModel(
+      id: json['id'] as String,
       name: json['name'] as String,
       issuer: json['issuer'] as String,
       issueDate: DateTime.parse(json['issueDate'] as String),
@@ -31,6 +34,7 @@ class CertificateModel {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'name': name,
       'issuer': issuer,
       'issueDate': issueDate.toIso8601String(),
@@ -42,6 +46,7 @@ class CertificateModel {
 
   factory CertificateModel.fromEntity(Certificate entity) {
     return CertificateModel(
+      id: entity.id,
       name: entity.name,
       issuer: entity.issuer,
       issueDate: entity.issueDate,
@@ -53,6 +58,7 @@ class CertificateModel {
 
   Certificate toEntity() {
     return Certificate(
+      id: id,
       name: name,
       issuer: issuer,
       issueDate: issueDate,
@@ -63,6 +69,7 @@ class CertificateModel {
   }
 
   CertificateModel copyWith({
+    String? id,
     String? name,
     String? issuer,
     DateTime? issueDate,
@@ -71,6 +78,7 @@ class CertificateModel {
     String? url,
   }) {
     return CertificateModel(
+      id: id ?? this.id,
       name: name ?? this.name,
       issuer: issuer ?? this.issuer,
       issueDate: issueDate ?? this.issueDate,

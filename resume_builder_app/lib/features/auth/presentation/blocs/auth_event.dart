@@ -34,3 +34,29 @@ class GoogleSignInEvent extends AuthEvent {
 class SignOutEvent extends AuthEvent {
   const SignOutEvent();
 }
+
+class UpdateUserProfileEvent extends AuthEvent {
+  final String displayName;
+  final String? photoURL;
+
+  const UpdateUserProfileEvent({
+    required this.displayName,
+    this.photoURL,
+  });
+
+  @override
+  List<Object?> get props => [displayName, photoURL];
+}
+
+class UpdatePasswordEvent extends AuthEvent {
+  final String newPassword;
+
+  const UpdatePasswordEvent(this.newPassword);
+
+  @override
+  List<Object?> get props => [newPassword];
+}
+
+class SendEmailVerificationEvent extends AuthEvent {
+  const SendEmailVerificationEvent();
+}

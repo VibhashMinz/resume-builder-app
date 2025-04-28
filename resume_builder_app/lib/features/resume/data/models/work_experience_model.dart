@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:resume_builder_app/features/resume/domain/entities/work_experience.dart';
 
 class WorkExperienceModel {
+  final String id;
   final String company;
   final String position;
   final String location;
@@ -11,6 +12,7 @@ class WorkExperienceModel {
   final List<String> achievements;
 
   const WorkExperienceModel({
+    required this.id,
     required this.company,
     required this.position,
     required this.location,
@@ -22,6 +24,7 @@ class WorkExperienceModel {
 
   factory WorkExperienceModel.fromJson(Map<String, dynamic> json) {
     return WorkExperienceModel(
+      id: json['id'] as String,
       company: json['company'] as String,
       position: json['position'] as String,
       location: json['location'] as String,
@@ -34,6 +37,7 @@ class WorkExperienceModel {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'company': company,
       'position': position,
       'location': location,
@@ -46,6 +50,7 @@ class WorkExperienceModel {
 
   factory WorkExperienceModel.fromEntity(WorkExperience entity) {
     return WorkExperienceModel(
+      id: entity.id,
       company: entity.company,
       position: entity.position,
       location: entity.location,
@@ -58,6 +63,7 @@ class WorkExperienceModel {
 
   WorkExperience toEntity() {
     return WorkExperience(
+      id: id,
       company: company,
       position: position,
       location: location,
@@ -69,6 +75,7 @@ class WorkExperienceModel {
   }
 
   WorkExperienceModel copyWith({
+    String? id,
     String? company,
     String? position,
     String? location,
@@ -78,6 +85,7 @@ class WorkExperienceModel {
     List<String>? achievements,
   }) {
     return WorkExperienceModel(
+      id: id ?? this.id,
       company: company ?? this.company,
       position: position ?? this.position,
       location: location ?? this.location,

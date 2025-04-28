@@ -21,6 +21,13 @@ class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
 
   @override
+  void initState() {
+    _emailController.text = "viviangerrard111@gmail.com";
+    _passwordController.text = "Abc123!!!";
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:resume_builder_app/features/resume/domain/entities/education.dart';
 
 class EducationModel {
+  final String id;
   final String institution;
   final String degree;
   final String field;
@@ -12,6 +13,7 @@ class EducationModel {
   final String location;
 
   const EducationModel({
+    required this.id,
     required this.institution,
     required this.degree,
     required this.field,
@@ -24,6 +26,7 @@ class EducationModel {
 
   factory EducationModel.fromJson(Map<String, dynamic> json) {
     return EducationModel(
+      id: json['id'] as String,
       institution: json['institution'] as String,
       degree: json['degree'] as String,
       field: json['field'] as String,
@@ -37,6 +40,7 @@ class EducationModel {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'institution': institution,
       'degree': degree,
       'field': field,
@@ -50,6 +54,7 @@ class EducationModel {
 
   factory EducationModel.fromEntity(Education entity) {
     return EducationModel(
+      id: entity.id,
       institution: entity.institution,
       degree: entity.degree,
       field: entity.field,
@@ -63,6 +68,7 @@ class EducationModel {
 
   Education toEntity() {
     return Education(
+      id: id,
       institution: institution,
       degree: degree,
       field: field,
@@ -75,6 +81,7 @@ class EducationModel {
   }
 
   EducationModel copyWith({
+    String? id,
     String? institution,
     String? degree,
     String? field,
@@ -85,6 +92,7 @@ class EducationModel {
     String? location,
   }) {
     return EducationModel(
+      id: id ?? this.id,
       institution: institution ?? this.institution,
       degree: degree ?? this.degree,
       field: field ?? this.field,

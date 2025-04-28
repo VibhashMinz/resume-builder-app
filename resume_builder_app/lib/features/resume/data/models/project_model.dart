@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:resume_builder_app/features/resume/domain/entities/project.dart';
 
 class ProjectModel {
+  final String id;
   final String name;
   final String description;
   final List<String> technologies;
@@ -10,6 +11,7 @@ class ProjectModel {
   final DateTime? endDate;
 
   const ProjectModel({
+    required this.id,
     required this.name,
     required this.description,
     required this.technologies,
@@ -20,6 +22,7 @@ class ProjectModel {
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) {
     return ProjectModel(
+      id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
       technologies: List<String>.from(json['technologies'] as List),
@@ -31,6 +34,7 @@ class ProjectModel {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'name': name,
       'description': description,
       'technologies': technologies,
@@ -42,6 +46,7 @@ class ProjectModel {
 
   factory ProjectModel.fromEntity(Project entity) {
     return ProjectModel(
+      id: entity.id,
       name: entity.name,
       description: entity.description,
       technologies: entity.technologies,
@@ -53,6 +58,7 @@ class ProjectModel {
 
   Project toEntity() {
     return Project(
+      id: id,
       name: name,
       description: description,
       technologies: technologies,
@@ -63,6 +69,7 @@ class ProjectModel {
   }
 
   ProjectModel copyWith({
+    String? id,
     String? name,
     String? description,
     List<String>? technologies,
@@ -71,6 +78,7 @@ class ProjectModel {
     DateTime? endDate,
   }) {
     return ProjectModel(
+      id: id ?? this.id,
       name: name ?? this.name,
       description: description ?? this.description,
       technologies: technologies ?? this.technologies,

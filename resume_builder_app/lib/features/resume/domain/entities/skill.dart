@@ -3,12 +3,14 @@ import 'package:equatable/equatable.dart';
 enum SkillLevel { beginner, intermediate, advanced, expert }
 
 class Skill extends Equatable {
+  final String id;
   final String name;
   final SkillLevel level;
   final String category;
   final List<String>? endorsements;
 
   const Skill({
+    required this.id,
     required this.name,
     required this.level,
     required this.category,
@@ -17,6 +19,7 @@ class Skill extends Equatable {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'name': name,
       'level': level,
       'category': category,
@@ -25,6 +28,7 @@ class Skill extends Equatable {
 
   @override
   List<Object?> get props => [
+        id,
         name,
         level,
         category,

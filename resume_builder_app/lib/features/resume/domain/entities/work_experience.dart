@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class WorkExperience extends Equatable {
+  final String id;
   final String company;
   final String position;
   final DateTime startDate;
@@ -10,6 +11,7 @@ class WorkExperience extends Equatable {
   final List<String> achievements;
 
   const WorkExperience({
+    required this.id,
     required this.company,
     required this.position,
     required this.startDate,
@@ -19,8 +21,22 @@ class WorkExperience extends Equatable {
     required this.achievements,
   });
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'company': company,
+      'position': position,
+      'startDate': startDate.toIso8601String(),
+      'endDate': endDate?.toIso8601String(),
+      'location': location,
+      'responsibilities': responsibilities,
+      'achievements': achievements,
+    };
+  }
+
   @override
   List<Object?> get props => [
+        id,
         company,
         position,
         startDate,

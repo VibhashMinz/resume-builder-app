@@ -91,23 +91,23 @@ class ResumeModel {
     };
   }
 
-  factory ResumeModel.fromEntity(Resume<PersonalInfo, Education, WorkExperience, Project, Skill, Language, Certificate> resume) {
+  factory ResumeModel.fromEntity(Resume<PersonalInfo, Education, WorkExperience, Project, Skill, Language, Certificate> entity) {
     return ResumeModel(
-      id: resume.id,
-      userId: resume.userId,
-      title: resume.title,
-      template: resume.template,
-      personalInfo: PersonalInfoModel.fromEntity(resume.personalInfo),
-      education: resume.education.map((e) => EducationModel.fromEntity(e)).toList(),
-      workExperience: resume.workExperience.map((e) => WorkExperienceModel.fromEntity(e)).toList(),
-      projects: resume.projects.map((e) => ProjectModel.fromEntity(e)).toList(),
-      skills: resume.skills.map((e) => SkillModel.fromEntity(e)).toList(),
-      languages: resume.languages.map((e) => LanguageModel.fromEntity(e)).toList(),
-      certificates: resume.certificates.map((e) => CertificateModel.fromEntity(e)).toList(),
-      summary: resume.summary,
-      isPublic: resume.isPublic,
-      createdAt: resume.createdAt,
-      updatedAt: resume.updatedAt,
+      id: entity.id,
+      userId: entity.userId,
+      title: entity.title,
+      template: entity.template,
+      personalInfo: PersonalInfoModel.fromEntity(entity.personalInfo),
+      education: entity.education.map((edu) => EducationModel.fromEntity(edu)).toList(),
+      workExperience: entity.workExperience.map((exp) => WorkExperienceModel.fromEntity(exp)).toList(),
+      projects: entity.projects.map((proj) => ProjectModel.fromEntity(proj)).toList(),
+      skills: entity.skills.map((skill) => SkillModel.fromEntity(skill)).toList(),
+      languages: entity.languages.map((lang) => LanguageModel.fromEntity(lang)).toList(),
+      certificates: entity.certificates.map((cert) => CertificateModel.fromEntity(cert)).toList(),
+      summary: entity.summary,
+      isPublic: entity.isPublic,
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt,
     );
   }
 

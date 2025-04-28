@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Certificate extends Equatable {
+  final String id;
   final String name;
   final String issuer;
   final DateTime issueDate;
@@ -9,6 +10,7 @@ class Certificate extends Equatable {
   final String? url;
 
   const Certificate({
+    required this.id,
     required this.name,
     required this.issuer,
     required this.issueDate,
@@ -19,6 +21,7 @@ class Certificate extends Equatable {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'name': name,
       'issuer': issuer,
       'issueDate': issueDate.toIso8601String(),
@@ -30,6 +33,7 @@ class Certificate extends Equatable {
 
   @override
   List<Object?> get props => [
+        id,
         name,
         issuer,
         issueDate,

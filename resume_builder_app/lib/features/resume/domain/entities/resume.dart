@@ -7,6 +7,7 @@ import 'package:resume_builder_app/features/resume/domain/entities/skill.dart';
 import 'package:resume_builder_app/features/resume/domain/entities/language.dart';
 import 'package:resume_builder_app/features/resume/domain/entities/certificate.dart';
 import 'package:resume_builder_app/features/resume/domain/entities/resume_template.dart';
+import 'package:resume_builder_app/features/resume/data/models/resume_model.dart';
 
 class Resume<P extends PersonalInfo, E extends Education, W extends WorkExperience, PR extends Project, S extends Skill, L extends Language, C extends Certificate> extends Equatable {
   final String id;
@@ -95,6 +96,26 @@ class Resume<P extends PersonalInfo, E extends Education, W extends WorkExperien
       isPublic: isPublic ?? this.isPublic,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
+
+  factory Resume.fromModel(ResumeModel model) {
+    return Resume<P, E, W, PR, S, L, C>(
+      id: model.id,
+      userId: model.userId,
+      title: model.title,
+      template: model.template,
+      personalInfo: model.personalInfo.toEntity() as P,
+      education: model.education.map((edu) => edu.toEntity() as E).toList(),
+      workExperience: model.workExperience.map((exp) => exp.toEntity() as W).toList(),
+      projects: model.projects.map((proj) => proj.toEntity() as PR).toList(),
+      skills: model.skills.map((skill) => skill.toEntity() as S).toList(),
+      languages: model.languages.map((lang) => lang.toEntity() as L).toList(),
+      certificates: model.certificates.map((cert) => cert.toEntity() as C).toList(),
+      summary: model.summary,
+      createdAt: model.createdAt,
+      updatedAt: model.updatedAt,
+      isPublic: model.isPublic,
     );
   }
 }
